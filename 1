@@ -18,7 +18,7 @@ const MeanValueCalculator = () => {
       
       setErrorMessage(error.response ? error.response.data : 'Error fetching data');
       setApiResponse(null);
-    }
+    
   };
 
   return (
@@ -27,12 +27,7 @@ const MeanValueCalculator = () => {
         <h1>Mean Value Calculator</h1>
         
        
-        <input
-          type="text"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          placeholder="Enter number ID (p, f, e, r)"
-        />
+        
         <button onClick={getAverages}>Get Averages</button>
         {errorMessage && <p className="error">{errorMessage}</p>}
         
@@ -44,7 +39,7 @@ const MeanValueCalculator = () => {
         )}
       </header>
     </div>
-  );
+  
 };
 
 export default MeanValueCalculator;
