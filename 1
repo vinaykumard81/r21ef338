@@ -1,1 +1,50 @@
+import React, { useState } from 'react';
+import axios from 'axios';
+import './App.css';
 
+const MeanValueCalculator = () => {
+
+  const [inputValue, setInputValue] = useState('');
+  const [apiResponse, setApiResponse] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
+  
+  const getAverages = async () => {
+    try {
+      const response = await axios.get(`}`);
+    
+      setApiResponse(response.data);
+      setErrorMessage(null);
+    } catch (error) {
+      
+      setErrorMessage(error.response ? error.response.data : 'Error fetching data');
+      setApiResponse(null);
+    }
+  };
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        <h1>Mean Value Calculator</h1>
+        
+       
+        <input
+          type="text"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          placeholder="Enter number ID (p, f, e, r)"
+        />
+        <button onClick={getAverages}>Get Averages</button>
+        {errorMessage && <p className="error">{errorMessage}</p>}
+        
+        {apiResponse && (
+          <div className="response">
+            <h2>Response:</h2>
+            <pre>{JSON.stringify(apiResponse, null, 2)}</pre>
+          </div>
+        )}
+      </header>
+    </div>
+  );
+};
+
+export default MeanValueCalculator;
